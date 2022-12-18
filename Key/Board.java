@@ -5,8 +5,8 @@ public class Board {
 
     private static int dimension = 8;
     private static int mineNumber = 10;
-    private static int[][] board = new int[dimension][dimension];
-    private static int[][] clickerBoard = new int[dimension][dimension];
+    private static int[][] board = new int[dimension][dimension]; //Represents minesweeper board
+    private static int[][] clickerBoard = new int[dimension][dimension]; //Represents what the user has clicked
     private static Boolean continuePlaying = true;
 
     // Displays the minesweeper board
@@ -27,12 +27,14 @@ public class Board {
             display += i+1;
             for (int j = 0; j < dimension; j++) {
                 display += "|";
+                // Displays mine
                 if (clickerBoard[i][j] == 2) {
                     display += "\u001B[31m" + "F" + "\u001B[0m";
                 }
+                // Displays clicked square
                 else if (clickerBoard[i][j] == 1) {
 
-                    if (board[i][j] == 9) {
+                    if (board[i][j] == 9) { //Lose condition
                         display += "M";
                         System.out.println("\nYOU LOST");
                         continuePlaying = false;
@@ -44,8 +46,6 @@ public class Board {
                 else {
                     display += " ";
                 }
-
-                
             }
             display += "|\n";
         }
@@ -63,7 +63,8 @@ public class Board {
             while (true) {
                 int xPosition = (int) (Math.random() * dimension);
                 int yPosition = (int) (Math.random() * dimension);
-
+                
+                // In case a position is chosen twice randomly 
                 if (board[xPosition][yPosition] != 9) {
                     board[xPosition][yPosition] = 9;
                     break;
@@ -76,6 +77,7 @@ public class Board {
     public static void boardValues() {
         for (int i = 0; i < dimension; i++) {
             for (int j = 0; j < dimension; j++) {
+                //Finds surrounding squares
                 for (int x = -1; x <= 1; x++)
                     for (int y = -1; y <= 1; y++) {
                         try {
@@ -83,7 +85,7 @@ public class Board {
                                 board[i][j]++;
                             }
                         }
-                        catch (Exception e) {}
+                        catch (Exception e) {} //Required due to out of bounds errors on the edges and corners
                     }
             }
         }
@@ -92,7 +94,7 @@ public class Board {
     // Asks for input from the player
     public static void getInput() {
         boolean inputValidation = true;
-        while (inputValidation) {
+        while (inputValidation) { //Ensures correctly formatted input
             try {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Where would you like to place your mine? Please input the value as x, y. If you would like to place a flag type 'flag'.");
@@ -114,7 +116,7 @@ public class Board {
                 clickerBoard[y-1][x-1] = newVal;
                 inputValidation = false;
             }
-            catch (Exception e) {
+            catch (Exception e) { //In case user incorrectly formats input
                 System.out.println("Please respond in the format shown above.");
             }
         }
@@ -123,6 +125,10 @@ public class Board {
 
     // Runs game and checks win conditions
     public static void play() {
+        System.out.print("\033[H\033[2J"); //Clears console
+        randomMines();
+        boardValues();
+        drawBoard();
         while (continuePlaying) {
             Board.getInput();
             Board.drawBoard();
@@ -137,7 +143,7 @@ public class Board {
                 }
 
             }
-            if (won) {
+            if (won) { //Win condition
                 continuePlaying = false;
                 System.out.println("You won!");
             }

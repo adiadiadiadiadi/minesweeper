@@ -19,7 +19,7 @@ public class Board {
             display += "|" + (i+1);
         }
         display += "|\n";
-         // Change the bounds of the for loop such that it loops through the length of the board array
+         // Change the bounds of the for loop such that it loops through the length of the board array using an enhanced for loop
         for () {
             display += "--";
         }

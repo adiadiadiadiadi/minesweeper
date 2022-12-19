@@ -58,7 +58,6 @@ public class Board {
 
     // Randomly populates mines across the board
     public static void randomMines() {
-        System.out.println(board);
         for (int i = 0; i < mineNumber; i++) {
             while (true) {
                 int xPosition = (int) (Math.random() * dimension);

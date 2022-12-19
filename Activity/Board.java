@@ -14,19 +14,20 @@ public class Board {
         String display = "";
         
         display += " ";
-        // Change the bounds of the for loop such that it loops through all the items in the board array
+        // Change the bounds of the for loop such that it loops through the length of the board array
         for () {
             display += "|" + (i+1);
         }
         display += "|\n";
-        for (int i = 0; i <= dimension; i++) {
+         // Change the bounds of the for loop such that it loops through the length of the board array
+        for () {
             display += "--";
         }
         display += "\n";
-
-        for (int i = 0; i < dimension; i++) {
+        // Change the bounds of the for loop such that it loops through all the items in the board array
+        for () {
             display += i+1;
-            for (int j = 0; j < dimension; j++) {
+            for () {
                 display += "|";
                 if (clickerBoard[i][j] == 2) {
                     display += "\u001B[31m" + "F" + "\u001B[0m";
@@ -50,7 +51,8 @@ public class Board {
             }
             display += "|\n";
         }
-        for (int i = 0; i <= dimension; i++) {
+        // Change the bounds of the for loop such that it loops through the length of the board array
+        for () {
             display += "--";
         }
         System.out.println(display);
@@ -62,14 +64,13 @@ public class Board {
         System.out.println(board);
         // Write a for loop to create as many mines as the mineNumber variable
         for () {
-        // Create a conditional for the while loop such that it runs until break
+        // Create a conditional for the while loop such that it runs until break to ensure that a full amount of mines is displayed
             while () {
                 int xPosition = (int) (Math.random() * dimension);
                 int yPosition = (int) (Math.random() * dimension);
 
                 if (board[xPosition][yPosition] != 9) {
                     board[xPosition][yPosition] = 9;
-                    break;
                 }
             }
         }
@@ -77,8 +78,9 @@ public class Board {
 
     // Calculates number of nearby mines for all squares
     public static void boardValues() {
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
+        // Change the bounds of the for loop such that it loops through all the items in the board array
+        for () {
+            for () {
                 //Create conditions within the for loops to count the mines surrounding a square 
                 for ()
                     for () {
